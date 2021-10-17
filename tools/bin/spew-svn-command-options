@@ -15,7 +15,7 @@ def find_options(lines):
             break
         if line[3] == ' ':
             continue
-        option_parts = filter(None, line.split(' '))
+        option_parts = list(filter(None, line.split(' ')))
         if option_parts[0].startswith('--'):
             option = option_parts[0]
         else:
@@ -49,7 +49,7 @@ for tool in tools:
             continue
         if not line:
             break
-        subcommand = filter(None, line.split(' '))[0]
+        subcommand = next(filter(None, line.split(' ')))
         subcommands.append(subcommand)
 
     # For each subcommand, find the options.
@@ -59,15 +59,15 @@ for tool in tools:
             lines = os.popen("%s help %s" %
                              (tool, subcommand), 'r').readlines()
             options = find_options(lines)
-            print "%s %s" % (os.path.basename(tool), subcommand)
+            print("%s %s" % (os.path.basename(tool), subcommand))
             options.sort()
             for option in options:
-                print "%s %s %s" % (os.path.basename(tool), subcommand, option)
+                print("%s %s %s" % (os.path.basename(tool), subcommand, option))
     else:
         lines = os.popen("%s --help" % (tool), 'r').readlines()
         options = find_options(lines)
-        print "%s" % (os.path.basename(tool))
+        print("%s" % (os.path.basename(tool)))
         options.sort()
         for option in options:
-            print "%s %s" % (os.path.basename(tool), option)
+            print("%s %s" % (os.path.basename(tool), option))
         
