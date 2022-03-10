@@ -4057,11 +4057,24 @@ $
         <indexterm>
           <primary>locks</primary>
           <secondary>svnrdump</secondary>
-        </indexterm>Finally, there are <firstterm>svnrdump
+        </indexterm>Next, there are <firstterm>svnrdump
         locks</firstterm>.  These are very much like svnsync locks, but
         are associated with the <command>svnrdump load</command> command
         (described in <xref linkend="svn.reposadmin.maint.migrate.svnrdump"
         />) instead of <command>svnsync</command>.</para>
+
+      <para>
+        <indexterm>
+          <primary>locks</primary>
+          <secondary>SQLite</secondary>
+        </indexterm>Finally, there are <firstterm>SQLite
+        locks</firstterm>.  These are used by the SQLite library (<ulink
+        url="https://www.sqlite.org/" />) to serialize access to SQLite
+        databases used by Subversion under the hood.  See, for example,
+        the <literal>exclusive-locking</literal> option in <xref
+        linkend="svn.advanced.confarea.opts.config" />.</para>
+
+      <!-- No need to mention svn_mutex__t at this time. -->
 
       <para>You can generally forget about these other kinds of locks
         until something goes wrong that requires you to care about
